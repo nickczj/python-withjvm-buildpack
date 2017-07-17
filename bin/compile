@@ -259,6 +259,17 @@ curl --retry 3 --silent --location $JVM_COMMON_BUILDPACK | tar xzm -C /tmp/jvm-c
 . /tmp/jvm-common/opt/jdbc.sh
 install_java_with_overlay ${BUILD_DIR}
 
+# Install Oracle Instant
+
+cd /home/vcap/app
+mv instantclient-basic-linux.x64-12.2.0.1.0.zip /app/.heroku/vendor/lib:$BUILD_DIR/.heroku/vendor/lib:/app/.heroku/python/lib
+cd /app/.heroku/vendor/lib:$BUILD_DIR/.heroku/vendor/lib:/app/.heroku/python/lib
+unzip instantclient-basic-linux.x64-12.2.0.1.0.zip
+cd /instantclient_12_2
+ln -s libclntsh.so.12.1 libclntsh.so
+ln -s libocci.so.12.1 libocci.so
+yum install libaio
+
 
 # Create .profile script for application runtime environment variables.
 set-env PATH '$HOME/.heroku/python/bin:$PATH'
