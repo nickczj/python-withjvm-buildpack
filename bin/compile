@@ -269,6 +269,8 @@ cd /instantclient_12_2
 ln -s libclntsh.so.12.1 libclntsh.so
 ln -s libocci.so.12.1 libocci.so
 yum install libaio
+export LD_RUN_PATH=/app/.heroku/vendor/lib:$BUILD_DIR/.heroku/vendor/lib:/app/.heroku/python/lib/instantclient_12_2
+export ORACLE_HOME=/app/.heroku/vendor/lib:$BUILD_DIR/.heroku/vendor/lib:/app/.heroku/python/lib/instantclient_12_2
 
 
 # Create .profile script for application runtime environment variables.
